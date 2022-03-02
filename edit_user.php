@@ -12,10 +12,27 @@ $row = mysqli_fetch_array($result);
 ?>
 <html>
 <head>
-<title>Add New User</title>
+<title>Update New User</title>
 <!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+<style>
+table{
+    width: 80%;
+    margin: 40px auto;
+    background: darkslategrey;
+    color: aliceblue;
+    
+}
+table.form{
+    text-align: left;
+    width: fit-content;
+    font-size: large;
+    size: 2;
+    
+}
+	</style>
 </head>
 <body>
+<div align="center">
 <form name="frmUser" method="post" action="">
 <div style="width:500px;">
 <div class="message"><?php if(isset($message)) { echo $message; } ?></div>
@@ -73,4 +90,5 @@ $row = mysqli_fetch_array($result);
 </table>
 </div>
 </form>
+</div>
 </body></html>

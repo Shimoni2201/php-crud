@@ -18,16 +18,29 @@ VALUES ('".$_POST["first_name"]."', '".$_POST["last_name"]."', '".$_POST["age"].
 <head>
 <title>Add New User</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<style>
+table{
+    width: 80%;
+    margin: 40px auto;
+    background: darkslategrey;
+    color: aliceblue;
+    
+}
+table.form{
+    text-align: left;
+    width: fit-content;
+    font-size: large;
+    size: 2;
+    
+}
+	</style>
 </head>
 <body>
 <div align="center">
 	<form  name="frmUser" method="post" id="quickform" action="">
 
 <div style="width:500px;">
-<div class="message"><?php if(isset($message)) { echo $message; } ?></div>
-<div align="right" style="padding-bottom:5px;"><a href="index.php" class="link"><img alt='List' 
-title='List' src='images/list.png' width='15px' height='15px'/> 
-List User</a></div>
+
 <table border="0" cellpadding="10" cellspacing="0" width="500" align="center" class="tblSaveForm">
 <tr class="tableheader">
 <td colspan="2">Personal details</td>
