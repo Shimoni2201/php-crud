@@ -37,7 +37,8 @@ $result = mysqli_query($conn,$sql);
                     <th>State</th>
                     <th>Country</th>
                     <th>Pincode</th>
-                    <th>CRUD Actions</th>
+                    <th>PIC</th>
+                    <th>Actions</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -59,6 +60,7 @@ $result = mysqli_query($conn,$sql);
                     <th><?php echo $row["city"]; ?></th>
                     <th><?php echo $row["state"]; ?></th>
                     <th><?php echo $row["country"]; ?></th>
+                    <td><img src="pics/<?php  echo $row["pic"];?>" width="80" height="80"></td>
                     <th><a href="edit_user.php?userId=<?php echo $row["userId"]; ?>" class="link"><img alt='Edit' title='Edit' src='images/edit.png' width='15px' height='15px' hspace='10' /></a>  <a href="delete_user.php?userId=<?php echo $row["userId"]; ?>"  class="link"><img alt='Delete' title='Delete' src='images/delete.png' width='15px' height='15px'hspace='10' /></a></th>
                     </tr>
                     <?php

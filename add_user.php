@@ -1,17 +1,33 @@
 <?php
 if(count($_POST)>0) {
 	require_once("db.php");
-	$sql = "INSERT INTO `users` (`first_name`, `last_name`, `age`, `mobile_number`, `pan`, `pincode`, `address`, `city`, `state`, `country`)
+// 	$sql = "INSERT INTO `users` (`first_name`, `last_name`, `age`, `mobile_number`, `pan`, `pincode`, `address`, `city`, `state`, `country`, `pic`)
+// VALUES ('".$_POST["first_name"]."', '".$_POST["last_name"]."', '".$_POST["age"]."', '".$_POST["mobile_number"]."', 
+// '".$_POST["pan"]."', '".$_POST["pincode"]."', 
+// '".$_POST["address"]."', '".$_POST["city"]."', '".$_POST["state"]."', '".$_POST["country"]."',  '$imgnewfile')";
+$ppic=$_FILES["pic"]["name"];
+$extension = substr($ppic,strlen($ppic)-4,strlen($ppic));
+$allowed_extensions = array(".jpg","jpeg",".png",".gif");
+if(!in_array($extension,$allowed_extensions))
+{
+echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
+}
+else
+{
+$imgnewfile=md5($imgfile).time().$extension;
+move_uploaded_file($_FILES["pic"]["tmp_name"],"pics/".$imgnewfile);
+
+$sql = "INSERT INTO `users` (`first_name`, `last_name`, `age`, `mobile_number`, `pan`, `pincode`, `address`, `city`, `state`, `country`, `pic`)
 VALUES ('".$_POST["first_name"]."', '".$_POST["last_name"]."', '".$_POST["age"]."', '".$_POST["mobile_number"]."', 
 '".$_POST["pan"]."', '".$_POST["pincode"]."', 
-'".$_POST["address"]."', '".$_POST["city"]."', '".$_POST["state"]."', '".$_POST["country"]."')";
-
+'".$_POST["address"]."', '".$_POST["city"]."', '".$_POST["state"]."', '".$_POST["country"]."',  '$imgnewfile')";
 	mysqli_query($conn,$sql);
 	$current_id = mysqli_insert_id($conn);
 	if(!empty($current_id)) {
 		$message = "New User Added Successfully";
 		header("location:index.php");
 	}
+}
 }
 ?>
 <html>
@@ -37,7 +53,7 @@ table.form{
 </head>
 <body>
 <div align="center">
-	<form  name="frmUser" method="post" id="quickform" action="">
+	<form  name="frmUser" method="post" id="quickform" enctype="multipart/form-data">
 
 <div style="width:500px;">
 
@@ -86,6 +102,12 @@ table.form{
 <tr>
 	<td><label>Country</label> </td>
 	<td><input required type="text" name="country" id="country" autofocus ></td>
+</tr>
+<tr>
+	<td>
+	<input type="file" class="form-control" name="pic"  required="true">
+	<span style="color:red; font-size:12px;">Only jpg / jpeg/ png /gif format allowed.</span>
+</td>
 </tr>
 <tr>
 <td colspan="2"><input type="submit" name="submit" value="Submit" class="btnSubmit"></td>

@@ -85,6 +85,12 @@ table.form{
 	<td><input required type="text" name="country" id="country" autofocus value="<?php echo $row['country']; ?>" ></td>
 </tr>
 <tr>
+	<!-- <td>
+<img src="pics/<?php  echo $row['Pic'];?>" width="120" height="120">
+<a href="change-image.php?userId=<?php echo $row['userId'];?>">Change Image</a>
+</td>
+</tr> -->
+<tr>
 <td colspan="2"><input type="submit" name="submit" value="Submit" class="btnSubmit"></td>
 </tr>
 </table>
